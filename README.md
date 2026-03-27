@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="cover.png" alt="The Vibe Coder's Handbook" width="600">
-</p>
 
 <h1 align="center">The Vibe Coder's Handbook</h1>
 
