@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Vibe Coder's Handbook — Free Guide to the Modern Web Dev Ecosystem</title>
+<meta name="description" content="A free 48-page guide explaining every tool in the modern JavaScript ecosystem in plain English. For vibe coders, returning developers, and curious minds.">
+<meta property="og:title" content="The Vibe Coder's Handbook">
+<meta property="og:description" content="Understanding Every Tool Your AI Just Used. Free 48-page guide to React, Next.js, TypeScript, Tailwind, and 30+ more tools — explained in plain English.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F172A;
+    --blue: #1E40AF;
+    --sky: #0EA5E9;
+    --indigo: #4F46E5;
+    --slate: #334155;
+    --gray: #64748B;
+    --light: #94A3B8;
+    --border: #E2E8F0;
+    --bg: #FAFBFF;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--slate);
+    overflow-x: hidden;
+  }
+
+  /* ═══════ HERO ═══════ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    background: var(--navy);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(30, 64, 175, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(79, 70, 229, 0.08) 0%, transparent 50%);
+    animation: drift 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-30px, 20px) rotate(2deg); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--sky);
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(42px, 7vw, 80px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 12px;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--sky), #818CF8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(12px, 1.8vw, 15px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .hero-desc {
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 0 auto 48px;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .cta-primary {
+    background: linear-gradient(135deg, var(--blue), var(--indigo));
+    color: white;
+    border: none;
+    box-shadow: 0 4px 24px rgba(30, 64, 175, 0.4);
+  }
+
+  .cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(30, 64, 175, 0.5);
+  }
+
+  .cta-secondary {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .cta-secondary:hover {
+    border-color: var(--sky);
+    background: rgba(14, 165, 233, 0.08);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    margin-top: 64px;
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--sky);
+  }
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-top: 4px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ═══════ TOOLS STRIP ═══════ */
+  .tools-strip {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .tools-scroll {
+    display: flex;
+    gap: 40px;
+    animation: scroll 30s linear infinite;
+    width: max-content;
+  }
+
+  .tools-scroll span {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ═══════ WHAT'S INSIDE ═══════ */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 24px;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 16px;
+  }
+
+  .section h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 40px;
+    line-height: 1.2;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .feature {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    transition: all 0.3s ease;
+  }
+
+  .feature:hover {
+    border-color: var(--sky);
+    box-shadow: 0 8px 32px rgba(14, 165, 233, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.08), rgba(14, 165, 233, 0.08));
+  }
+
+  .feature h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .feature p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gray);
+  }
+
+  /* ═══════ WHO IS THIS FOR ═══════ */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .audience-card {
+    text-align: center;
+    padding: 32px 20px;
+    border-radius: 12px;
+    background: var(--white);
+    border: 1px solid var(--border);
+  }
+
+  .audience-emoji { font-size: 36px; margin-bottom: 12px; }
+  .audience-card h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .audience-card p { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+  /* ═══════ QUOTE ═══════ */
+  .quote-section {
+    background: var(--navy);
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .quote-section blockquote {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(22px, 4vw, 32px);
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+    max-width: 700px;
+    margin: 0 auto 24px;
+    line-height: 1.5;
+  }
+
+  .quote-section cite {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sky);
+    font-style: normal;
+  }
+
+  /* ═══════ DOWNLOAD ═══════ */
+  .download-section {
+    text-align: center;
+    padding: 100px 24px;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--white) 100%);
+  }
+
+  .download-section h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .download-section p {
+    font-size: 18px;
+    color: var(--gray);
+    margin-bottom: 40px;
+  }
+
+  .download-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 40px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .dl-pdf {
+    background: var(--blue);
+    color: white;
+    box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3);
+  }
+
+  .dl-pdf:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(30, 64, 175, 0.4); }
+
+  .dl-docx {
+    background: var(--white);
+    color: var(--navy);
+    border: 2px solid var(--border);
+  }
+
+  .dl-docx:hover { border-color: var(--blue); transform: translateY(-2px); }
+
+  .dl-github {
+    background: var(--navy);
+    color: white;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.3);
+  }
+
+  .dl-github:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(15, 23, 42, 0.4); }
+
+  .download-note {
+    font-size: 14px;
+    color: var(--light);
+    margin-top: 8px;
+  }
+
+  /* ═══════ FOOTER ═══════ */
+  footer {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  footer p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  footer a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+
+  footer a:hover { text-decoration: underline; }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  /* ═══════ RESPONSIVE ═══════ */
+  @media (max-width: 600px) {
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .stat-num { font-size: 22px; }
+    .cta { padding: 14px 28px; font-size: 15px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="badge">Free &bull; 48 Pages &bull; March 2026</div>
+    <h1>The Vibe Coder's<br><em>Handbook</em></h1>
+    <p class="hero-sub">Understanding Every Tool Your AI Just Used</p>
+    <p class="hero-desc">
+      A free, plain-English guide to the modern JavaScript ecosystem. 
+      React, Next.js, TypeScript, Tailwind, Drizzle, Zustand, Zod — and 30+ more tools explained for humans, not engineers.
+    </p>
+    <div class="cta-group">
+      <a href="https://github.com/nasserDev/vibe-coders-handbook/releases/latest" class="cta cta-primary">
+        📥 Download Free PDF
+      </a>
+      <a href="https://github.com/nasserDev/vibe-coders-handbook" class="cta cta-secondary">
+        ⭐ Star on GitHub
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">20</div>
+        <div class="stat-label">Chapters</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">48</div>
+        <div class="stat-label">Pages</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">35+</div>
+        <div class="stat-label">Tools Explained</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$0</div>
+        <div class="stat-label">Forever</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ TOOLS STRIP ═══════ -->
+<div class="tools-strip">
+  <div class="tools-scroll">
+    <span>React</span><span>Next.js</span><span>TypeScript</span><span>Node.js</span>
+    <span>Tailwind</span><span>Express</span><span>Drizzle</span><span>Prisma</span>
+    <span>Zustand</span><span>Zod</span><span>Vue</span><span>Svelte</span>
+    <span>Vite</span><span>TanStack Query</span><span>Supabase</span><span>Vercel</span>
+    <span>Angular</span><span>Fastify</span><span>NestJS</span><span>SWR</span>
+    <!-- Duplicate for seamless loop -->
+    <span>React</span><span>Next.js</span><span>TypeScript</span><span>Node.js</span>
+    <span>Tailwind</span><span>Express</span><span>Drizzle</span><span>Prisma</span>
+    <span>Zustand</span><span>Zod</span><span>Vue</span><span>Svelte</span>
+    <span>Vite</span><span>TanStack Query</span><span>Supabase</span><span>Vercel</span>
+    <span>Angular</span><span>Fastify</span><span>NestJS</span><span>SWR</span>
+  </div>
+</div>
+
+<!-- ═══════ WHAT'S INSIDE ═══════ -->
+<section class="section">
+  <div class="section-label">What's Inside</div>
+  <h2>Every tool explained.<br>Every decision mapped.</h2>
+  <p style="font-size: 17px; line-height: 1.7; color: var(--gray); max-width: 640px;">
+    This book doesn't teach you how to code. It teaches you what every major tool in the ecosystem does, which ones are interchangeable, and which ones work together — so you actually understand what your AI built.
+  </p>
+  <div class="feature-grid">
+    <div class="feature">
+      <div class="feature-icon">🗺️</div>
+      <h3>The Complete Map</h3>
+      <p>14 categories of tools, each with either/or choices and 2026 defaults. One table to rule them all.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⚔️</div>
+      <h3>Head-to-Head Comparisons</h3>
+      <p>Drizzle vs Prisma. React vs Vue. Zustand vs Redux. Side-by-side tables showing exactly how they differ.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🍳</div>
+      <h3>Real-World Analogies</h3>
+      <p>The restaurant analogy. The car analogy. The town-to-megacity analogy. Concepts that stick.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🚨</div>
+      <h3>Error Message Guide</h3>
+      <p>"Cannot read properties of undefined" — what it means, why it happened, and how to fix it. For every common error.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔐</div>
+      <h3>Security for Vibe Coders</h3>
+      <p>The rules AI-generated code often breaks: exposed secrets, missing validation, plain-text passwords. Know the risks.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📚</div>
+      <h3>Learning Resources</h3>
+      <p>Every chapter ends with verified links to the best free tutorials, YouTube channels, and official docs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ WHO IS THIS FOR ═══════ -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-label">Who It's For</div>
+  <h2>You're not dumb.<br>The ecosystem is confusing.</h2>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <div class="audience-emoji">🧑‍💻</div>
+      <h3>Vibe Coders</h3>
+      <p>You build with AI and want to understand what it generated</p>
+    </div>
+    <div class="audience-card">
+      <div class="audience-emoji">🔄</div>
+      <h3>Returning Devs</h3>
+      <p>You left coding and came back to a completely different world</p>
+    </div>
+    <div class="audience-card">
+      <div class="audience-emoji">👔</div>
+      <h3>Founders & Managers</h3>
+      <p>You want to speak your dev team's language with confidence</p>
+    </div>
+    <div class="audience-card">
+      <div class="audience-emoji">🎓</div>
+      <h3>Students & Curious Minds</h3>
+      <p>You want the map before starting the tutorials</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ QUOTE ═══════ -->
+<section class="quote-section">
+  <blockquote>"I felt like someone who had left a small town for ten years and come back to find a megacity in its place. Same coordinates, completely different world."</blockquote>
+  <cite>— Nasser AlNasser, Author</cite>
+</section>
+
+<!-- ═══════ DOWNLOAD ═══════ -->
+<section class="download-section" id="download">
+  <h2>Download. Free. Forever.</h2>
+  <p>48 pages. 20 chapters. Zero paywalls.</p>
+  <div class="download-buttons">
+    <a href="https://github.com/nasserDev/vibe-coders-handbook/releases/latest" class="dl-btn dl-pdf">
+      📥 Download PDF
+    </a>
+    <a href="https://github.com/nasserDev/vibe-coders-handbook/releases/latest" class="dl-btn dl-docx">
+      📄 Download DOCX
+    </a>
+    <a href="https://github.com/nasserDev/vibe-coders-handbook" class="dl-btn dl-github">
+      ⭐ GitHub Repo
+    </a>
+  </div>
+  <p class="download-note">No signup. No email. No catch. Just click and read.</p>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="footer-links">
+    <a href="mailto:nasserdevx@outlook.com">✉️ nasserdevx@outlook.com</a>
+    <a href="https://github.com/nasserDev">GitHub: /nasserDev</a>
+  </div>
+  <p>
+    Made by <strong>Nasser AlNasser</strong> in Riyadh, Saudi Arabia.<br>
+    Written with the help of Claude by Anthropic.<br>
+    Knowledge should be free. Confusion should be temporary.
+  </p>
+</footer>
+
+</body>
+</html>
