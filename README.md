@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/nasserDev/vibe-coders-handbook/releases/latest"><img src="https://img.shields.io/badge/📥_Download-PDF-1E40AF?style=for-the-badge&logoColor=white" alt="Download PDF"></a>
-  <a href="https://github.com/nasserDev/vibe-coders-handbook/releases/latest"><img src="https://img.shields.io/badge/📄_Download-DOCX-059669?style=for-the-badge&logoColor=white" alt="Download DOCX"></a>
+  <a href="https://github.com/nasserDev/vibe-coders-handbook/raw/main/TheVibeCodersHandbook.pdf"><img src="https://img.shields.io/badge/📥_Download-PDF-1E40AF?style=for-the-badge&logoColor=white" alt="Download PDF"></a>
+  <a href="https://github.com/nasserDev/vibe-coders-handbook/raw/main/TheVibeCodersHandbook.docx"><img src="https://img.shields.io/badge/📄_Download-DOCX-059669?style=for-the-badge&logoColor=white" alt="Download DOCX"></a>
 </p>
 
 <p align="center">
@@ -101,9 +101,9 @@ You're not alone. **63% of people using AI coding tools in 2026 are not develope
 
 ## Download
 
-📥 **[Download PDF](https://github.com/nasserDev/vibe-coders-handbook/releases/latest)** — Best for reading on screen or printing
+📥 **[Download PDF](https://github.com/nasserDev/vibe-coders-handbook/raw/main/TheVibeCodersHandbook.pdf)** — Best for reading on screen or printing
 
-📄 **[Download DOCX](https://github.com/nasserDev/vibe-coders-handbook/releases/latest)** — Best if you want to edit or adapt
+📄 **[Download DOCX](https://github.com/nasserDev/vibe-coders-handbook/raw/main/TheVibeCodersHandbook.docx)** — Best if you want to edit or adapt
 
 Both formats are identical in content. 48 pages, 20 chapters, free forever.
 
